@@ -1,0 +1,5 @@
+com/interview/shoppingbasket/CheckoutPipelineTest.class
+com/interview/shoppingbasket/BasketTest.class
+com/interview/shoppingbasket/BasketConsolidationCheckoutStepTest.class
+com/interview/shoppingbasket/PromotionCheckoutStepTest.class
+com/interview/shoppingbasket/RetailPriceCheckoutStepTest.class

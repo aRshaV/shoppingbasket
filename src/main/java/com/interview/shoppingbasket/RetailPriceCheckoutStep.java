@@ -17,6 +17,7 @@ public class RetailPriceCheckoutStep implements CheckoutStep {
             int quantity = basketItem.getQuantity();
             double price = pricingService.getPrice(basketItem.getProductCode());
             basketItem.setProductRetailPrice(price);
+            price = applyPromotion(checkoutContext.getPromos().get(basketItem.getProductCode()), basketItem, price);
             retailTotal += quantity*price;
         }
 
@@ -24,9 +25,8 @@ public class RetailPriceCheckoutStep implements CheckoutStep {
     }
 
     public double applyPromotion(Promotion promotion, BasketItem item, double price) {
-        /*
-         * Implement applyPromotion method
-         */
-        return retailTotal;
+        if(promotion == null)
+            return price;
+        return promotion.getDiscount(item, price);
     }
 }

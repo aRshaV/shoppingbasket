@@ -1,6 +1,7 @@
 package com.interview.shoppingbasket;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Basket {
@@ -20,6 +21,22 @@ public class Basket {
     }
 
     public void consolidateItems() {
-        // Exercise - implement this function
+        HashMap<String, BasketItem> itemMap = new HashMap<>();
+
+        for (BasketItem item : items) {
+            String pCode = item.getProductCode();
+            if (itemMap.containsKey(item.getProductCode())) {
+                BasketItem foundItem = itemMap.get(pCode);
+                foundItem.setQuantity(foundItem.getQuantity() + item.getQuantity());
+            } else {
+                BasketItem newItem = new BasketItem();
+                newItem.setProductCode(item.getProductCode());
+                newItem.setProductName(item.getProductName());
+                newItem.setQuantity(item.getQuantity());
+                itemMap.put(item.getProductCode(), newItem);
+            }
+        }
+
+        items = new ArrayList<>(itemMap.values());
     }
 }

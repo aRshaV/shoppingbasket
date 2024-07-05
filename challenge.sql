@@ -162,8 +162,8 @@ END;
 -- Users look for each store/warehouse on the application
 -- Most of the searches includes dept attribute
 --
--- The before and after explain plan will be at docs folder on git (could not export from APEX workspace)
--- Results analysis
+-- The before and after explain plan will be at docs folder on git could not export from APEX workspace)
+-- Results analysis (see images on docs - 9_before_without_index and 9_after_with_composite_index)
 -- The number of rows processed were signficantly low (Rows) and the cost/number of the I/O opertaions decreased (Cost/Bytes).
 -- From the explain image the time for executing the query maintained but it was due to the small set of the table. However with index was 0,02s and without 0,03s the execution of the query 
 
@@ -172,7 +172,7 @@ CREATE INDEX idx_item_loc_soh_loc_dept ON item_loc_soh(loc, dept);
 -- 10. Run the previous method that was created on 6. for all the stores from item_loc_soh to the history table. The entire migration should not take more than 10s to run (don't use parallel hint to solve it :)) 
 --
 -- The use of append on INSERTs of the procedure and disable the default index for primary key
---  See docs folder on github. This execution was for 10000 records of item_loc_soh
+--  See docs folder on github (images 10_before and 10_after_with_appends_disabling_pk). This execution was for 10000 records of item_loc_soh
 
 
 -- 11. Please have a look into the AWR report (AWR.html) in attachment and let us know what is the problem that the AWR is highlighting and potential solution.
